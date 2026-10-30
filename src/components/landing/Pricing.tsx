@@ -56,7 +56,7 @@ export function Pricing() {
   return (
     <section id="pricing" className={cn("scroll-mt-24 px-6 py-20 sm:px-8 lg:px-12 lg:py-28")}>
       {/* Header */}
-      <ScrollReveal animation="fadeInUp">
+      <ScrollReveal animation="rise">
         <div className={cn("mx-auto flex flex-col items-center text-center")}>
           <SectionTag num="04" label="Membership" />
           <h2 className={cn("mt-3 text-[clamp(1.8rem,5vw,3.2rem)] font-bold tracking-tight")}>
