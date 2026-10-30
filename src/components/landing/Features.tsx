@@ -24,7 +24,7 @@ export function Features() {
       }}
     >
       {/* Header */}
-      <ScrollReveal animation="fade">
+      <ScrollReveal animation="fadeInLeft">
         <div className={cn("mx-auto flex max-w-[1440px] flex-col")}>
           <SectionTag num="03" label="The Emmatos experience" />
           <h2

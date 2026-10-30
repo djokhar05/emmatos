@@ -182,7 +182,7 @@ export function Hero() {
           <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
             <a
               href="#pricing"
-              className="inline-flex min-h-12 items-center justify-center gap-3 rounded-sm bg-em-yellow px-6 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-ink transition hover:-translate-y-0.5 hover:bg-[#ffd12e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-em-yellow"
+              className="inline-flex min-h-12 items-center justify-center gap-3 rounded-sm bg-em-yellow px-6 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-ink transition hover:-translate-y-0.5 hover:bg-[#ffd12e] animate__animated animate__pulse animate__infinite focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-em-yellow"
             >
               Find your membership
               <span aria-hidden>↗</span>

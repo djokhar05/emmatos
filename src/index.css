@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "animate.css";
 
 @theme {
   --color-ink: #0B0A0C;

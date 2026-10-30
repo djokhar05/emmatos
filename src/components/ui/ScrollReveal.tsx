@@ -1,31 +1,48 @@
 import { useEffect, useRef, useState } from "react";
+import { cn } from "../../lib/cn.ts";
+
+/* animate.css animations that can be triggered by ScrollReveal */
+const ANIMATE_CSS_ANIMS = new Set([
+  "fadeIn", "fadeInUp", "fadeInDown", "fadeInLeft", "fadeInRight",
+  "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp",
+  "slideInUp", "slideInDown", "slideInLeft", "slideInRight",
+  "bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp",
+  "flipInX", "flipInY", "lightSpeedInLeft", "lightSpeedInRight",
+  "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight",
+  "jackInTheBox", "rollIn",
+]);
+
+
 
 interface ScrollRevealOptions {
-  /** IntersectionObserver threshold — how much of the element must be visible before triggering. Default 0.12 */
   threshold?: number;
-  /** Delay in ms before the animation starts. */
   delay?: number;
-  /** Animation duration in ms. Default 700 */
   duration?: number;
-  /** Type of entrance animation */
+  /**
+   * Animation name — either a custom keyframe (`"slide-up"`, `"fade"`, `"scale-in"`, `"slide-left"`)
+   * or an animate.css class name without the prefix (`"fadeInUp"`, `"zoomIn"`, `"slideInUp"`, …).
+   */
   animation?:
-    | "fade"
-    | "slide-up"
-    | "slide-left"
-    | "scale-in";
-  /** Root class to pass through */
+    | "fade" | "slide-up" | "slide-left" | "scale-in"
+    | "fadeIn" | "fadeInUp" | "fadeInDown" | "fadeInLeft" | "fadeInRight"
+    | "zoomIn" | "zoomInDown" | "zoomInLeft" | "zoomInRight" | "zoomInUp"
+    | "slideInUp" | "slideInDown" | "slideInLeft" | "slideInRight"
+    | "bounceIn" | "bounceInDown" | "bounceInLeft" | "bounceInRight" | "bounceInUp"
+    | "flipInX" | "flipInY"
+    | "lightSpeedInLeft" | "lightSpeedInRight"
+    | "rotateIn" | "rotateInDownLeft" | "rotateInDownRight" | "rotateInUpLeft" | "rotateInUpRight"
+    | "jackInTheBox" | "rollIn";
   className?: string;
-  /** Children — wrapped by the component */
   children: React.ReactNode;
 }
 
 /**
- * Wraps content & reveals it with a CSS animation when the wrapper scrolls
- * into view. The wrapper starts invisible (opacity‑0) and stays invisible
- * until the observer fires.
+ * Wraps content & reveals it with an entrance animation when the wrapper
+ * scrolls into view. Supports both custom keyframes (`"slide-up"`) and
+ * animate.css classes (`"fadeInUp"`).
  *
  * ```tsx
- * <ScrollReveal animation="slide-up" delay={200}>
+ * <ScrollReveal animation="fadeInUp" delay={200}>
  *   <div>hidden until scrolled to</div>
  * </ScrollReveal>
  * ```
@@ -57,20 +74,24 @@ export function ScrollReveal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [threshold]);
 
-  const animName = `enter-${animation}`;
+  const isAnimate = ANIMATE_CSS_ANIMS.has(animation);
+  const animName = isAnimate ? undefined : `enter-${animation}`;
+  const acssCls = isAnimate ? `animate__animated animate__${animation}` : "";
 
   return (
     <div
       ref={wrapperRef}
       aria-hidden={!revealed}
-      className={className}
+      className={cn(className, revealed ? acssCls : undefined)}
       style={{
         opacity: revealed ? undefined : 0,
         animationName: revealed ? animName : undefined,
-        animationDuration: `${duration}ms`,
+        animationDuration: isAnimate || !revealed ? undefined : `${duration}ms`,
         animationDelay: `${delay}ms`,
         animationFillMode: "both",
-        animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+        animationTimingFunction: isAnimate || !revealed
+          ? undefined
+          : "cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
       {children}
@@ -79,7 +100,7 @@ export function ScrollReveal({
 }
 
 /**
- * Convenience: builds a stagger-delay `animationDelay` chunk for a child
+ * Builds a stagger-delay `animationDelay` chunk for a child
  * inside a revealed parent. Pass the 0‑based index and a step in ms.
  *
  * ```tsx
