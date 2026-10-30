@@ -36,7 +36,7 @@ export function RevenueChart() {
         animation: "enter-slide-up 800ms cubic-bezier(0.16,1,0.3,1) both",
       }}
     >
-      <div className={cn("flex items-center justify-between mb-4")}>
+      <div className={cn("mb-4 flex flex-wrap items-center justify-between gap-2")}>
         <span className={cn("font-mono text-2xs uppercase tracking-wider text-muted/50")}>
           Revenue &mdash; This week
         </span>
@@ -137,7 +137,7 @@ export function RevenueChart() {
 
       {/* Legend (all-branch view) */}
       {branch === "all" && (
-        <div className={cn("flex items-center gap-4 mt-6 pt-3 border-t border-bone/[0.06]")}>
+        <div className={cn("flex flex-wrap items-center gap-x-4 gap-y-2 mt-6 pt-3 border-t border-bone/[0.06]")}>
           {branches.map((b) => (
             <span key={b} className={cn("inline-flex items-center gap-1.5 font-mono text-2xs uppercase tracking-wider text-muted/50")}>
               <span className={cn("h-2 w-2 rounded-full")} style={{ backgroundColor: BRANCH_COLORS[b] }} />

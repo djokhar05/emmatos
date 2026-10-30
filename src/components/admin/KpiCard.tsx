@@ -36,7 +36,7 @@ export function KpiCard({ data, className }: { data: KpiData; className?: string
       )}
       style={(data.alert ? "#E6352B" : data.color) ? { borderTop: `2px solid ${data.alert ? "#E6352B" : data.color}` } : undefined}
     >
-      <span className={cn("font-mono text-2xs uppercase tracking-wider text-muted/50 truncate")}>
+      <span className={cn("min-h-7 font-mono text-2xs uppercase leading-tight tracking-wider text-muted/50")}>
         {data.label}
       </span>
 

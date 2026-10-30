@@ -63,29 +63,40 @@ export function AdminNavRail() {
   return (
     <nav
       className={cn(
-        "fixed left-0 top-0 bottom-0 z-40 w-56 lg:w-64",
-        "bg-panel border-r border-bone/8",
+        "fixed inset-x-0 top-0 z-40 lg:inset-y-0 lg:right-auto lg:w-64",
+        "bg-panel border-b border-bone/8 lg:border-b-0 lg:border-r",
         "flex flex-col",
       )}
     >
       {/* Brand */}
       <a
         href="/"
-        className={cn("flex items-center gap-3 px-5 py-4 border-b border-bone/8 group")}
+        className={cn("flex items-center gap-3 px-4 py-2.5 border-b border-bone/8 group lg:px-5 lg:py-4")}
       >
-        <Logomark size={20} />
+        <Logomark size={20} withWord={false} />
         <span className={cn("font-mono text-2xs uppercase tracking-[0.2em] text-bone/40 group-hover:text-bone/70 transition-colors")}>
           Emmatos
         </span>
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            signOut();
+            window.location.href = "/admin/login";
+          }}
+          className={cn("ml-auto rounded-sm border border-em-red/20 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-wider text-em-red/70 transition-colors hover:bg-em-red/10 hover:text-em-red lg:hidden")}
+        >
+          Sign out
+        </button>
       </a>
 
       {/* Section label */}
-      <p className={cn("px-5 pt-5 pb-2 font-mono text-2xs uppercase tracking-[0.2em] text-muted/30")}>
+      <p className={cn("hidden px-5 pt-5 pb-2 font-mono text-2xs uppercase tracking-[0.2em] text-muted/30 lg:block")}>
         Navigation
       </p>
 
       {/* Nav items */}
-      <div className={cn("flex flex-col gap-0.5 px-3 flex-1")}>
+      <div className={cn("flex gap-1 overflow-x-auto px-2 py-1.5 lg:flex-1 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:px-3 lg:py-0")}>
         {ITEMS.map((it) => {
           const active = path === it.href;
           return (
@@ -93,8 +104,9 @@ export function AdminNavRail() {
               key={it.label}
               href={it.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-sm",
-                "font-mono text-xs uppercase tracking-wider",
+                "flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-sm px-1 py-1.5",
+                "font-mono text-[8px] uppercase tracking-[0.08em] whitespace-nowrap",
+                "lg:flex-none lg:flex-row lg:justify-start lg:gap-3 lg:px-3 lg:py-2.5 lg:text-xs lg:tracking-wider",
                 "transition-colors duration-150",
                 active
                   ? "bg-bone/10 text-bone"
@@ -106,7 +118,7 @@ export function AdminNavRail() {
               </span>
               <span>{it.label}</span>
               {active && (
-                <span className={cn("ml-auto h-1 w-1 rounded-full bg-em-yellow")} />
+                <span className={cn("hidden ml-auto h-1 w-1 rounded-full bg-em-yellow lg:block")} />
               )}
             </a>
           );
@@ -114,7 +126,7 @@ export function AdminNavRail() {
       </div>
 
       {/* Bottom */}
-      <div className={cn("px-3 py-4 border-t border-bone/8 flex flex-col gap-0.5")}>
+      <div className={cn("hidden px-3 py-4 border-t border-bone/8 lg:flex lg:flex-col lg:gap-0.5")}>
         <a
           href="/"
           className={cn(

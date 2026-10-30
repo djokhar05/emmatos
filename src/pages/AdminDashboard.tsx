@@ -20,7 +20,7 @@ export function AdminDashboard() {
 
   useEffect(() => {
     if (!isAuthed()) nav("/admin/login");
-  }, []);
+  }, [nav]);
 
   /* ── KPI helpers ───────────────────────────── */
   const br = branch as BranchId;
@@ -85,7 +85,7 @@ export function AdminDashboard() {
 
       <main
         className={cn(
-          "flex-1 ml-56 lg:ml-64 p-4 lg:p-6",
+          "min-w-0 w-full flex-1 ml-0 px-3 pt-[112px] pb-6 sm:px-4 lg:ml-64 lg:w-auto lg:p-6",
           "flex flex-col gap-4",
         )}
       >
@@ -93,7 +93,7 @@ export function AdminDashboard() {
 
         {/* KPI row */}
         <div
-          className={cn("grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 lg:gap-4")}
+          className={cn("grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-3 lg:gap-4 xl:grid-cols-6")}
           style={{ animation: "enter-slide-up 800ms 0.1s both" }}
         >
           <KpiCard data={kpiActive} />

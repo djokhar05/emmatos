@@ -39,14 +39,13 @@ export function AdminTopBar() {
   return (
     <header
       className={cn(
-        "flex items-center gap-4",
-        "px-6 lg:px-8 py-3",
+        "flex flex-wrap items-center gap-x-3 gap-y-2 px-1 py-2 sm:px-2 lg:flex-nowrap lg:gap-4 lg:px-8 lg:py-3",
         "bg-panel border-b border-bone/8",
       )}
     >
       {/* Title */}
-      <div className={cn("flex flex-col min-w-0")}>
-        <span className={cn("text-lg font-bold tracking-tight text-bone leading-tight")}>
+      <div className={cn("order-1 flex min-w-0 flex-col lg:order-1")}>
+        <span className={cn("text-base font-bold tracking-tight text-bone leading-tight sm:text-lg")}>
           {greeting()}, Front Desk
         </span>
         <span className={cn("font-mono text-2xs uppercase tracking-wider text-muted/40")}>
@@ -55,18 +54,23 @@ export function AdminTopBar() {
       </div>
 
       {/* Branch switcher — centred */}
-      <div className={cn("flex-1 flex justify-center")}>
-        <BranchSwitcher value={branch} onChange={set} size="sm" />
+      <div className={cn("order-3 w-full overflow-x-auto lg:order-2 lg:flex-1 lg:w-auto lg:overflow-visible")}>
+        <BranchSwitcher
+          value={branch}
+          onChange={set}
+          size="sm"
+          className="[&>button]:gap-0.5 [&>button]:px-1 [&>button]:tracking-[0.08em] sm:[&>button]:gap-2 sm:[&>button]:px-2.5 sm:[&>button]:tracking-[0.2em]"
+        />
       </div>
 
       {/* Right: live dot + clock */}
-      <div className={cn("flex items-center gap-3 shrink-0")}>
+      <div className={cn("order-2 ml-auto flex shrink-0 items-center gap-2 sm:gap-3 lg:order-3")}>
         <span className={cn("inline-flex items-center gap-1.5")} title="Live">
           <span className={cn("inline-block h-2 w-2 rounded-full animate-pulse-dot bg-em-red")} />
-          <span className={cn("font-mono text-2xs uppercase tracking-wider text-em-red/50")}>LIVE</span>
+          <span className={cn("hidden font-mono text-2xs uppercase tracking-wider text-em-red/50 sm:inline")}>LIVE</span>
         </span>
         <span
-          className={cn("font-mono text-sm tracking-[0.1em] tabular-nums text-bone")}
+          className={cn("font-mono text-xs tracking-[0.04em] tabular-nums text-bone sm:text-sm sm:tracking-[0.1em]")}
           suppressHydrationWarning
         >
           {timeStr}

@@ -66,7 +66,7 @@ export function MembersTable() {
   return (
     <div className={cn("rounded-sm border border-bone/10 bg-panel overflow-hidden")}>
       {/* Header */}
-      <div className={cn("flex items-center justify-between gap-4 px-4 py-3 border-b border-bone/8")}>
+      <div className={cn("flex flex-wrap items-center justify-between gap-2 px-4 py-3 border-b border-bone/8")}>
         <span className={cn("font-mono text-2xs uppercase tracking-wider text-muted/50 shrink-0")}>
           Members &middot; {filtered.length}
         </span>
@@ -86,7 +86,7 @@ export function MembersTable() {
             className={cn(
               "pl-7 pr-3 py-1.5 rounded-sm border border-bone/15 bg-ink",
               "font-mono text-xs text-bone placeholder:text-muted/30",
-              "outline-none focus:border-em-yellow/50 transition-colors w-44",
+              "outline-none focus:border-em-yellow/50 transition-colors w-36 sm:w-44 max-w-[52vw]",
             )}
           />
         </div>

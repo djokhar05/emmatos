@@ -53,12 +53,12 @@ export function BranchPerformance() {
   return (
     <div className={cn("rounded-sm border border-bone/10 bg-panel")}>
       {/* Header */}
-      <div className={cn("flex items-center justify-between px-4 py-3 border-b border-bone/8")}>
+      <div className={cn("flex flex-wrap items-center justify-between gap-3 border-b border-bone/8 px-4 py-3")}>
         <span className={cn("font-mono text-2xs uppercase tracking-wider text-muted/50")}>
           Branch performance
         </span>
         {/* Plan mix legend */}
-        <div className={cn("flex items-center gap-3")}>
+        <div className={cn("flex flex-wrap items-center gap-x-3 gap-y-1")}>
           {PLAN_ORDER.map((p) => (
             <span key={p} className={cn("inline-flex items-center gap-1.5 font-mono text-2xs uppercase tracking-wider text-muted/40")}>
               <span className={cn("h-1.5 w-1.5 rounded-full")} style={{ backgroundColor: PLAN_COLORS[p] }} />
@@ -81,9 +81,9 @@ export function BranchPerformance() {
           const color    = BRANCH_COLORS[id];
 
           return (
-            <div key={id} className={cn("grid grid-cols-[auto_1fr] gap-x-6 px-4 py-4 lg:py-5")}>
+            <div key={id} className={cn("grid grid-cols-1 gap-y-4 px-4 py-4 sm:grid-cols-[auto_1fr] sm:gap-x-5 lg:py-5")}>
               {/* Branch label */}
-              <div className={cn("flex flex-col justify-center gap-1 w-24 shrink-0")}>
+              <div className={cn("flex flex-col justify-center gap-1 sm:w-24 sm:shrink-0")}>
                 <span className={cn("inline-flex items-center gap-2")}>
                   <span className={cn("h-2 w-2 rounded-full shrink-0")} style={{ backgroundColor: color }} />
                   <span className={cn("font-mono text-xs uppercase tracking-wider text-bone")}>{b.name}</span>
@@ -92,7 +92,7 @@ export function BranchPerformance() {
               </div>
 
               {/* Metrics grid */}
-              <div className={cn("grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4")}>
+              <div className={cn("grid grid-cols-2 gap-x-3 gap-y-4 sm:gap-x-5 lg:grid-cols-4 lg:gap-x-6")}>
 
                 {/* Utilisation */}
                 <div className={cn("flex flex-col gap-2")}>

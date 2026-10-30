@@ -7,17 +7,16 @@ import { BRANCH_COLORS } from "../../data/branches.ts";
 export interface BranchOption {
   id: BranchIdOrAll;
   label: string;
+  mobileLabel?: string;
   color?: string;       // for individual branches
 }
 
-export const ALL_BRANCH_OPTIONS: BranchOption[] = [
-  { id: "all", label: "All" },
-  { id: "alagbado", label: "Alagbado", color: BRANCH_COLORS.alagbado },
-  { id: "ipaja",    label: "Ipaja",    color: BRANCH_COLORS.ipaja },
-  { id: "isashi",   label: "Isashi",   color: BRANCH_COLORS.isashi },
+const ALL_BRANCH_OPTIONS: BranchOption[] = [
+  { id: "all", label: "All", mobileLabel: "All" },
+  { id: "alagbado", label: "Alagbado", mobileLabel: "ALG", color: BRANCH_COLORS.alagbado },
+  { id: "ipaja",    label: "Ipaja",    mobileLabel: "IPJ", color: BRANCH_COLORS.ipaja },
+  { id: "isashi",   label: "Isashi",   mobileLabel: "ISA", color: BRANCH_COLORS.isashi },
 ];
-
-export const SINGLE_BRANCH_OPTIONS: BranchOption[] = ALL_BRANCH_OPTIONS.slice(1);
 
 /* ── Component ───────────────────────────────────────────── */
 
@@ -83,7 +82,14 @@ export function BranchSwitcher({
                 style={{ backgroundColor: opt.color }}
               />
             )}
-            <span>{opt.label}</span>
+            {opt.mobileLabel ? (
+              <>
+                <span className="sm:hidden">{opt.mobileLabel}</span>
+                <span className="hidden sm:inline">{opt.label}</span>
+              </>
+            ) : (
+              <span>{opt.label}</span>
+            )}
           </button>
         );
       })}
