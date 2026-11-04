@@ -5,6 +5,7 @@ import { Marquee } from "../components/Marquee.tsx";
 import { BranchCards } from "../components/landing/BranchCards.tsx";
 import { WorkoutShowcase } from "../components/landing/WorkoutShowcase.tsx";
 import { Features } from "../components/landing/Features.tsx";
+import { Trainers } from "../components/landing/Trainers.tsx";
 import { ProShop } from "../components/landing/ProShop.tsx";
 import { Pricing } from "../components/landing/Pricing.tsx";
 import { Footer } from "../components/landing/Footer.tsx";
@@ -32,6 +33,7 @@ export function Landing() {
         <BranchCards />
         <WorkoutShowcase />
         <Features />
+        <Trainers />
         <Pricing />
         <ProShop />
       </main>
